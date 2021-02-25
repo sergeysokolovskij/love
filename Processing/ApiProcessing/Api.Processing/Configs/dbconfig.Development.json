@@ -1,0 +1,19 @@
+{
+    "ConnectionStrings": {
+        "MySQL": "Server=localhost;Database=lovedb;Uid=root;Pwd=12345",
+        "Redis": {
+            "host": "localhost",
+            "port": "6379"
+        }
+    },
+    "RabbitMq": {
+        "BrokerName": "lovebrocker",
+        "QueueName": "lovequee",
+        "RetryCount": "5",
+        "VirtualHost": "your_virtual_host",
+        "Username": "guest",
+        "Password": "guest",
+        "Host": "localhost",
+        "DispatchConsumersAsync": true
+    }
+}

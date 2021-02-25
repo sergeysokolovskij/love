@@ -1,0 +1,16 @@
+{
+	"UrlPathes": {
+		"Api": "https://localhost:5001/",
+		"Site": "https://localhost:8080"
+	},
+	"maxFileSize": "20000000",
+	"CacheOptions": {
+		"PolicyName": "always"
+	},
+	"MessangerOptions": {
+		"CountItemsInPage": "10"
+	},
+	"AuthOptions": {
+		"IsNeedConfirmPhone" : true
+	}
+}

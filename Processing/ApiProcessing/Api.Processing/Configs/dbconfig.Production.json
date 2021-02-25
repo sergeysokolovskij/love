@@ -1,0 +1,9 @@
+{
+    "ConnectionStrings": {
+        "MySQL": "Server=localhost;Database=lovedb;Uid=admin;Pwd=Cvthnm182123",
+        "Redis": {
+            "host": "localhost",
+            "port": "6379"
+        }
+    }
+}

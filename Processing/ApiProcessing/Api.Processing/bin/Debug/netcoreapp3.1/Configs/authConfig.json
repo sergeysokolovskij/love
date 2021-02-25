@@ -1,0 +1,23 @@
+{
+	"CrsfKey": "secret",
+	"Auth": {
+		"Issuer": "ShopPlatformApi",
+		"Audience": "http://localhost:3000,https://localhost:3000,http://localhost:8080,https://localhost:8080,https://localhost:44390,https://localhost:44370,http://localhost:5000"
+	},
+	"TokenOptions": {
+		"TokenLifeTimeOptions": {
+			"RefreshTokenLifeTime": "30", // в днях
+			"AccessTokenLifeTime": "30" //в минутах
+		},
+		"Key": "k72gnxq3pkum9toiub48o8s8sdbjhme1tg0m3p4jfkzovsgdqzgv6t47ig3tr5d9", //ключ для цифровой подписи
+		"CypherKey": "1tg0m3p4jfkzovsgk72gnxq3pkum9toiub48o8s8sdbjhmedqzgv6t47ig3tr5d9" //ключ для шифрования aes
+	},
+	"Mail": {
+		//Содержит данные для доступа в почту. SMTP-сервер должен отправлять сообщения о подтверждении регистрации/смене пароля/что-либо еще
+		"Login": "apbolgaria@gmail.com",
+		"Password": "udacha2021!",
+		"DisplayedName": "Заявка", // с какого email будет все идти,
+		"To": "apbolgaria@gmail.com"
+	},
+	"needConfirmRegister" : "false"
+}

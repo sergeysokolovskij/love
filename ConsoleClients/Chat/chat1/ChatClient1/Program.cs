@@ -64,7 +64,6 @@ namespace ChatClient1
 
 			var authRequest = host.Services.GetRequiredService<IAuthRequest>();
 			var brockerService = host.Services.GetRequiredService<IBrockerService>();
-			await brockerService.PuplishReadMessage("test");
 			await authRequest.GetAuthTokenAsync();
 			var messangerSessionRequest = host.Services.GetRequiredService<IMessangerSessionRequest>();
 			var receiveMessageService = host.Services.GetRequiredService<IMessageHubService>();

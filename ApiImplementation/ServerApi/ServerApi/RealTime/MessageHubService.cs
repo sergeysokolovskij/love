@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using ServerApi.Utils;
+using Microsoft.Extensions.Configuration;
 
 namespace ServerApi.RealTime
 {
@@ -23,16 +24,19 @@ namespace ServerApi.RealTime
 		private readonly ApplicationContext db;
 
 		private readonly IBrockerService brockerService;
+		private readonly IConfiguration configuration;
 
 		public MessageHubService(IAesCipher aes,
 			IRsaCryptService rsa,
 			ApplicationContext db,
-			IBrockerService brockerService)
+			IBrockerService brockerService,
+			IConfiguration configuration)
 		{
 			this.aes = aes;
 			this.db = db;
 			this.rsa = rsa;
 			this.brockerService = brockerService;
+			this.configuration = configuration;
 		}
 
 		public async Task ReceiveMessageAsync(string message)
@@ -48,20 +52,17 @@ namespace ServerApi.RealTime
 
 				var readMessageModel = new
 				{
-					userId = "asd",
-					messageId = model.Message.MessageId
+					userId = configuration.GetValue<string>("UserId"),
+					messageId = await aes.Crypt(model.Message.MessageId)
 				};
 
-				string cryptedText = await aes.Crypt(JsonConvert.SerializeObject(readMessageModel));
-				await brockerService.PuplishReadMessage(cryptedText);
+				string modelToSend = JsonConvert.SerializeObject(readMessageModel);
+				await brockerService.PuplishReadMessage(modelToSend);
 
 				if (rsa.VerifySignature(session.ServerPublicKey, model.Message.ObjectToBytes(), model.Sign.FromUrlSafeBase64()))
 				{
 					Console.WriteLine("Signature was verified");
 				}
-				else
-					throw new Exception("Incorrect signature.");
-
 			}
 			catch (Exception ex)
 			{

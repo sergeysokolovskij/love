@@ -39,8 +39,8 @@ namespace ServerApi.Services
             {
 				var session = await db.Sessions.SingleOrDefaultAsync();
 				string routingkey = BrockerKeysFactory.GenerateQueueKey(session.SessionId, BrcokerKeysTypes.readmessage);
-				
-				connection.BasicPublish("readedmessages", routingkey, null, message.FromUrlSafeBase64());
+			
+				connection.BasicPublish("readedmessages", routingkey, null, Encoding.UTF8.GetBytes(message));
             }
         }
 	}
